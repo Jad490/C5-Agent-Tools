@@ -1,0 +1,10 @@
+[
+  {"book_id":"B001","title":"Artificial Intelligence: A Modern Approach","authors":["Stuart Russell","Peter Norvig"],"topics":["artificial intelligence","agents","search"],"shelf":"QA76.9.A25 R87"},
+  {"book_id":"B002","title":"Designing Data-Intensive Applications","authors":["Martin Kleppmann"],"topics":["databases","distributed systems","data engineering"],"shelf":"QA76.9.D3 K54"},
+  {"book_id":"B003","title":"Reinforcement Learning: An Introduction","authors":["Richard S. Sutton","Andrew G. Barto"],"topics":["machine learning","agents","reinforcement learning"],"shelf":"Q325.6 S88"},
+  {"book_id":"B004","title":"Introduction to Algorithms","authors":["Thomas H. Cormen","Charles E. Leiserson","Ronald L. Rivest","Clifford Stein"],"topics":["algorithms","search","computer science"],"shelf":"QA76.6 I585"},
+  {"book_id":"B005","title":"Speech and Language Processing","authors":["Daniel Jurafsky","James H. Martin"],"topics":["natural language processing","language models","artificial intelligence"],"shelf":"P98 J87"},
+  {"book_id":"B006","title":"Computer Networking: A Top-Down Approach","authors":["James F. Kurose","Keith W. Ross"],"topics":["networks","protocols","internet"],"shelf":"TK5105.875.I57 K88"},
+  {"book_id":"B007","title":"Database System Concepts","authors":["Abraham Silberschatz","Henry F. Korth","S. Sudarshan"],"topics":["databases","transactions","SQL"],"shelf":"QA76.9.D3 S563"},
+  {"book_id":"B008","title":"Deep Learning","authors":["Ian Goodfellow","Yoshua Bengio","Aaron Courville"],"topics":["machine learning","neural networks","artificial intelligence"],"shelf":"Q325.5 G66"}
+]

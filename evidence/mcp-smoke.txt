@@ -1,0 +1,38 @@
+[11/01/26 17:06:17] INFO     Starting MCP server 'Campus        transport.py:241
+                             Reading Toolkit' with transport                    
+                             'stdio'                                            
+OFFLINE MCP CHECK — real server/client, no model inference
+Discovered: ['build_reading_list', 'save_book', 'search_catalog']
+
+[AGENT -> MCP CLIENT -> SERVER] search_catalog {"query": "agents", "limit": 2}
+[MCP SERVER] DATA search_catalog query='agents' matches=2
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"query":"agents","matches":[{"book_id":"B001","title":"Artificial Intelligence: A Modern Approach","authors":["Stuart Russell","Peter Norvig"],"topics":["artificial intelligence","agents","search"],"shelf":"QA76.9.A25 R87"},{"book_id":"B003","title":"Reinforcement Learning: An Introduction","authors":["Richard S. Sutton","Andrew G. Barto"],"topics":["machine learning","agents","reinforcement learning"],"shelf":"Q325.6 S88"}],"total_matches":2,"source":"bundled_demo_catalog"}
+
+[AGENT -> MCP CLIENT -> SERVER] save_book {"book_id": "B001", "list_name": "smoke"}
+[MCP SERVER] ACTION save_book book_id=B001 list_name=smoke status=saved
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"list_name":"smoke","book_id":"B001","title":"Artificial Intelligence: A Modern Approach","status":"saved"}
+
+[AGENT -> MCP CLIENT -> SERVER] build_reading_list {"query": "databases", "list_name": "smoke", "limit": 2}
+[MCP SERVER] ORCHESTRATION build_reading_list start
+[MCP SERVER] DATA search_catalog query='databases' matches=2
+[MCP SERVER] ACTION save_book book_id=B002 list_name=smoke status=saved
+[MCP SERVER] ACTION save_book book_id=B007 list_name=smoke status=saved
+[MCP SERVER] ORCHESTRATION build_reading_list complete saves=2
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"query":"databases","list_name":"smoke","selected":[{"book_id":"B002","title":"Designing Data-Intensive Applications","authors":["Martin Kleppmann"],"topics":["databases","distributed systems","data engineering"],"shelf":"QA76.9.D3 K54"},{"book_id":"B007","title":"Database System Concepts","authors":["Abraham Silberschatz","Henry F. Korth","S. Sudarshan"],"topics":["databases","transactions","SQL"],"shelf":"QA76.9.D3 S563"}],"saves":[{"list_name":"smoke","book_id":"B002","title":"Designing Data-Intensive Applications","status":"saved"},{"list_name":"smoke","book_id":"B007","title":"Database System Concepts","status":"saved"}],"newly_saved":2,"already_saved":0,"steps":["search_catalog: 2 selected of 2 matches","save_book: B002 -> saved","save_book: B007 -> saved"]}
+
+[AGENT -> MCP CLIENT -> SERVER] save_book {"book_id": "B999", "list_name": "smoke"}
+[11/01/26 17:06:17] Error calling tool 'save_book'                              
+[SERVER -> MCP CLIENT -> AGENT] isError=True
+BOOK_NOT_FOUND: B999 is not in the demo catalog.
+
+[AGENT -> MCP CLIENT -> SERVER] build_reading_list {"query": "unobtainium", "list_name": "smoke"}
+[MCP SERVER] ORCHESTRATION build_reading_list start
+[MCP SERVER] DATA search_catalog query='unobtainium' matches=0
+                    Error calling tool 'build_reading_list'                     
+[SERVER -> MCP CLIENT -> AGENT] isError=True
+NO_MATCHES: no matching books; nothing was saved. Try another topic.
+
+PASS: exactly three tools; data, action, workflow, persistence and errors verified.
