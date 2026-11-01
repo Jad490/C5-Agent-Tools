@@ -51,15 +51,17 @@ and does not replace the required live agent screencast.**
 Create `.env` from `.env.example` if it does not exist. The agent automatically
 loads `.env` from the project root; do not show it in a recording or commit it.
 
-Default setup, using OpenAI:
+Default setup, using Gemini with the OpenAI Agents SDK:
 
 ```dotenv
-MODEL_PROVIDER=openai
-OPENAI_API_KEY=your_key_here
-OPENAI_MODEL=gpt-4.1-mini
+MODEL_PROVIDER=gemini
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-3.1-flash-lite
 ```
 
-Use an API key with model access and available API credits. Then:
+Use a Gemini API key with model access and available quota. No OpenAI API key is
+needed for this mode. All four live demo scenarios passed with this model; see
+[the live verification record](evidence/live-demo.md). Then:
 
 ```bash
 python -m campus_mcp.agent
@@ -93,27 +95,26 @@ scenario, including an error reply for B999. It fails if routing is missing or
 incorrect. The model sees all three tools and selects among them; the host does
 not force a per-prompt tool choice. Follow [the timed screencast guide](docs/screencast.md).
 
-### Optional Gemini provider
+### SDK requirement and optional OpenAI provider
 
 The PDF explicitly requires the **OpenAI Agents SDK**, which this project uses in
-both modes. It does not specify a model provider. OpenAI is the default and the
-most direct match to the assignment. If a separate class rule requires an OpenAI
-model, use the default configuration.
+both modes. It does not specify a model provider. The submitted demonstration
+uses Gemini as the model provider. If a separate class rule requires an OpenAI
+model, select the optional OpenAI provider below.
 
-For Gemini, configure:
+For an OpenAI model, configure these settings in `.env` instead:
 
 ```dotenv
-MODEL_PROVIDER=gemini
-GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-3.8-flash
+MODEL_PROVIDER=openai
+OPENAI_API_KEY=your_key_here
+OPENAI_MODEL=gpt-4.1-mini
 ```
 
-The host uses `OpenAIChatCompletionsModel` and Google's OpenAI-compatible endpoint,
-while `Agent`, `Runner`, and `MCPServerStdio` remain from the OpenAI Agents SDK.
-Choose a compatible model available to your account; the default follows Google's
-[compatibility example](https://ai.google.dev/gemini-api/docs/openai/).
-The provider adapter has local configuration tests. Live provider verification
-requires a working key; see [verification evidence](docs/verification.md).
+In Gemini mode, the host uses `OpenAIChatCompletionsModel` and Google's
+[OpenAI-compatible endpoint](https://ai.google.dev/gemini-api/docs/openai/), while
+`Agent`, `Runner`, and `MCPServerStdio` remain from the OpenAI Agents SDK.
+The default Gemini model was verified with real tool calls. The optional OpenAI
+provider has local configuration tests; see [verification evidence](docs/verification.md).
 
 ## Tool contracts
 
@@ -187,11 +188,11 @@ Only catalog and database paths are passed explicitly to the server, not API key
 
 | Setting | Default / meaning |
 |---|---|
-| `MODEL_PROVIDER` | `openai`, or optional `gemini` |
-| `OPENAI_API_KEY` | Required for the default live model mode |
+| `MODEL_PROVIDER` | `gemini`, or optional `openai` |
+| `OPENAI_API_KEY` | Required only for optional OpenAI mode |
 | `OPENAI_MODEL` | `gpt-4.1-mini` |
-| `GEMINI_API_KEY` | Required only for Gemini mode |
-| `GEMINI_MODEL` | `gemini-3.8-flash` |
+| `GEMINI_API_KEY` | Required for default Gemini mode |
+| `GEMINI_MODEL` | `gemini-3.1-flash-lite`, verified live |
 | `CAMPUS_CATALOG_PATH` | Optional path to a catalog with the bundled JSON schema |
 | `CAMPUS_DB_PATH` | Optional path to a SQLite database |
 | `--db` | Overrides the agent's database path, useful for isolated recordings |

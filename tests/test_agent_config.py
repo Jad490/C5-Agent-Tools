@@ -4,7 +4,7 @@ from agents import OpenAIChatCompletionsModel
 from campus_mcp.agent import configure_model
 
 
-def test_openai_default(monkeypatch):
+def test_openai_provider(monkeypatch):
     monkeypatch.setenv("MODEL_PROVIDER", "openai")
     monkeypatch.setenv("OPENAI_API_KEY", "test-value-not-a-real-key")
     monkeypatch.delenv("OPENAI_MODEL", raising=False)
@@ -23,11 +23,14 @@ def test_missing_key_has_actionable_error(monkeypatch, provider, key):
 
 
 async def test_gemini_uses_agents_sdk_model_adapter(monkeypatch):
-    monkeypatch.setenv("MODEL_PROVIDER", "gemini")
+    monkeypatch.delenv("MODEL_PROVIDER", raising=False)
+    monkeypatch.delenv("GEMINI_MODEL", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     monkeypatch.setenv("GEMINI_API_KEY", "test-value-not-a-real-key")
     model, client = configure_model()
     try:
         assert isinstance(model, OpenAIChatCompletionsModel)
+        assert model.model == "gemini-3.1-flash-lite"
         assert str(client.base_url) == "https://generativelanguage.googleapis.com/v1beta/openai/"
     finally:
         await client.close()

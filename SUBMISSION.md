@@ -30,7 +30,7 @@ video URL has been invented for this submission.
 
 - [ ] Add student name and ID.
 - [ ] Read the summary and reflection and confirm you can explain them.
-- [ ] Run the live checked demo with a working API key.
+- [x] Run the live checked demo with a working Gemini API key.
 - [ ] Record a 5–7 minute screencast of the live agent using all three tools.
 - [ ] Introduce the three categories, show round trips, and discuss challenges.
 - [x] Publish the source code to the repository linked above.

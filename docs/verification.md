@@ -15,15 +15,19 @@ and OpenAI Agents SDK 0.24.0.
 - The required summary contains 361 whitespace-delimited words, excluding headings
   and references; the reflection contains two paragraphs.
 - No API key is required by the unit tests or smoke check.
+- Live Gemini 3.1 Flash-Lite demo — all four scenarios passed: Data, Action,
+  Orchestration, and the expected unknown-book error. The model chose the correct
+  tool in every scenario and produced final responses from the MCP replies.
+  See [the observed results](../evidence/live-demo.md).
 
-## Live checks still required
+## Live run and remaining deliverables
 
-No model API key was configured during the local verification. The OpenAI agent's
-live tool selection, final model responses, and optional Gemini inference have
-**not** been verified. The offline test transcript is explicitly not a live agent
-demo and is not the screencast deliverable.
+The live run used the OpenAI Agents SDK with Gemini as the model provider. The
+initial Gemini 3.8 Flash configuration timed out. Gemini 3.1 Flash-Lite completed
+the full demo successfully and is now the default. The optional OpenAI provider
+has configuration tests but has not been verified against the OpenAI API.
 
-After configuring a key, run the following with a fresh database filename:
+For a rehearsal or recording, use a fresh database filename:
 
 ```bash
 python -m campus_mcp.agent --demo --db runtime/live-check-01.sqlite3
@@ -32,5 +36,6 @@ python -m scripts.show_saved --db runtime/live-check-01.sqlite3
 
 Success requires `[DEMO VERIFIED]`, all three tools selected in the correct
 scenarios, `BOOK_NOT_FOUND` for B999, and only B001/B003 saved to `demo_agent`.
-Then record the 5–7 minute walkthrough using `--step`, upload the video, and add
-the real repository and video URLs to `SUBMISSION.md`.
+The 5–7 minute recording is still required. Use `--step` for narration, upload the
+video, and add its URL to `SUBMISSION.md`. The code repository is already linked;
+the grader still needs access because it is private.

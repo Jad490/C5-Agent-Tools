@@ -92,7 +92,7 @@ def make_mcp_client(db_path: Path | None = None) -> VisibleMCPClient:
 
 
 def configure_model() -> tuple[str | OpenAIChatCompletionsModel, AsyncOpenAI | None]:
-    provider = os.getenv("MODEL_PROVIDER", "openai").strip().lower()
+    provider = os.getenv("MODEL_PROVIDER", "gemini").strip().lower()
     if provider == "openai":
         if not os.getenv("OPENAI_API_KEY", "").strip():
             raise ValueError("Add OPENAI_API_KEY to .env, or use the offline smoke script.")
@@ -107,7 +107,7 @@ def configure_model() -> tuple[str | OpenAIChatCompletionsModel, AsyncOpenAI | N
             max_retries=1,
         )
         return OpenAIChatCompletionsModel(
-            model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+            model=os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite"),
             openai_client=client,
         ), client
     raise ValueError("MODEL_PROVIDER must be openai or gemini.")
@@ -127,7 +127,7 @@ async def main() -> None:
             names = {tool.name for tool in await server.list_tools()}
             if names != EXPECTED_TOOLS:
                 raise RuntimeError(f"Expected exactly three tools; discovered {sorted(names)}")
-            print(f"[HOST] OpenAI Agents SDK | provider={os.getenv('MODEL_PROVIDER', 'openai')}")
+            print(f"[HOST] OpenAI Agents SDK | provider={os.getenv('MODEL_PROVIDER', 'gemini')}")
             print(f"[MCP CLIENT] Discovered exactly three tools: {', '.join(sorted(names))}")
             agent = Agent(
                 name="Campus Reading Assistant",

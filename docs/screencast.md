@@ -6,11 +6,11 @@ neither this document nor the offline smoke transcript is the video deliverable.
 
 ## Before recording
 
-1. Add a working OpenAI API key to `.env`. Keep `MODEL_PROVIDER=openai` for the
-   default setup. Run `python -m campus_mcp.agent --demo --db runtime/rehearsal.sqlite3`
-   to verify real inference, tool selection, and the expected failure. If it fails,
-   resolve the error before recording. No live model result has been supplied in
-   the offline evidence.
+1. Use the configured `.env` with `MODEL_PROVIDER=gemini`, your `GEMINI_API_KEY`,
+   and `GEMINI_MODEL=gemini-3.1-flash-lite`. All four live demo scenarios have
+   passed with this model; see `evidence/live-demo.md`. If you rehearse again, use
+   `python -m campus_mcp.agent --demo --db runtime/rehearsal.sqlite3`. Each full
+   demo normally makes eight model requests, so save requests for the recording.
 2. Publish the repository and have its URL ready to show. Open the README,
    `campus_mcp/server.py`, `campus_mcp/service.py`, and `campus_mcp/agent.py` in an editor.
 3. Open a terminal at the project root and activate `.venv`. Increase the font size
