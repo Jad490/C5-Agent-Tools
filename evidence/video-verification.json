@@ -1,0 +1,15 @@
+{
+  "recorded_on": "2026-11-25",
+  "duration_seconds": 400.5,
+  "duration_label": "6:40",
+  "video_codec": "H.264",
+  "audio_codec": "AAC",
+  "resolution": "1600x900",
+  "frames_per_second": 2,
+  "synthetic_narration": true,
+  "model": "gemini-flash-lite-latest",
+  "agent_exit_code": 0,
+  "demo_verified": true,
+  "tests_passed": 46,
+  "video_sha256": "a2985aae715cbc4616de5288c5c9da58e3f0af2cc3536c4c281b5e692d6f8e08"
+}

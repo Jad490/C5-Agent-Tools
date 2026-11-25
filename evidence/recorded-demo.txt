@@ -1,0 +1,76 @@
+[11/25/26 21:02:29] INFO     Starting MCP server 'Campus        transport.py:241
+                             Reading Toolkit' with transport                    
+                             'stdio'                                            
+[HOST] OpenAI Agents SDK | provider=gemini
+[MCP CLIENT] Discovered exactly three tools: build_reading_list, save_book, search_catalog
+
+=== Data ===
+Press Enter to issue this request... 
+
+USER: Find books about agents. Show at most 2; do not save anything.
+
+[AGENT -> MCP CLIENT -> SERVER] search_catalog {"query": "agents", "limit": 2}
+[MCP SERVER] DATA search_catalog query='agents' matches=2
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"query":"agents","matches":[{"book_id":"B001","title":"Artificial Intelligence: A Modern Approach","authors":["Stuart Russell","Peter Norvig"],"topics":["artificial intelligence","agents","search"],"shelf":"QA76.9.A25 R87"},{"book_id":"B003","title":"Reinforcement Learning: An Introduction","authors":["Richard S. Sutton","Andrew G. Barto"],"topics":["machine learning","agents","reinforcement learning"],"shelf":"Q325.6 S88"}],"total_matches":2,"source":"bundled_demo_catalog"}
+
+ASSISTANT: I found 2 books about agents in the bundled demo catalog:
+
+1. **Artificial Intelligence: A Modern Approach** (ID: `B001`) by Stuart Russell and Peter Norvig
+   - Topics: artificial intelligence, agents, search
+   - Shelf: `QA76.9.A25 R87` *(Note: Shelf labels are illustrative.)*
+
+2. **Reinforcement Learning: An Introduction** (ID: `B003`) by Richard S. Sutton and Andrew G. Barto
+   - Topics: machine learning, agents, reinforcement learning
+   - Shelf: `Q325.6 S88` *(Note: Shelf labels are illustrative.)*
+
+As requested, nothing has been saved.
+
+=== Action ===
+Press Enter to issue this request... 
+
+USER: Save book B001 to my list demo_agent.
+
+[AGENT -> MCP CLIENT -> SERVER] save_book {"book_id": "B001", "list_name": "demo_agent"}
+[MCP SERVER] ACTION save_book book_id=B001 list_name=demo_agent status=saved
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"list_name":"demo_agent","book_id":"B001","title":"Artificial Intelligence: A Modern Approach","status":"saved"}
+
+ASSISTANT: Successfully saved book `B001` (*Artificial Intelligence: A Modern Approach*) to your reading list `demo_agent`.
+
+=== Orchestration ===
+Press Enter to issue this request... 
+
+USER: Find 2 books about agents and save them to demo_agent.
+
+[AGENT -> MCP CLIENT -> SERVER] build_reading_list {"limit": 2, "query": "agents", "list_name": "demo_agent"}
+[MCP SERVER] ORCHESTRATION build_reading_list start
+[MCP SERVER] DATA search_catalog query='agents' matches=2
+[MCP SERVER] ACTION save_book book_id=B001 list_name=demo_agent status=already_saved
+[MCP SERVER] ACTION save_book book_id=B003 list_name=demo_agent status=saved
+[MCP SERVER] ORCHESTRATION build_reading_list complete saves=2
+[SERVER -> MCP CLIENT -> AGENT] isError=False
+{"query":"agents","list_name":"demo_agent","selected":[{"book_id":"B001","title":"Artificial Intelligence: A Modern Approach","authors":["Stuart Russell","Peter Norvig"],"topics":["artificial intelligence","agents","search"],"shelf":"QA76.9.A25 R87"},{"book_id":"B003","title":"Reinforcement Learning: An Introduction","authors":["Richard S. Sutton","Andrew G. Barto"],"topics":["machine learning","agents","reinforcement learning"],"shelf":"Q325.6 S88"}],"saves":[{"list_name":"demo_agent","book_id":"B001","title":"Artificial Intelligence: A Modern Approach","status":"already_saved"},{"list_name":"demo_agent","book_id":"B003","title":"Reinforcement Learning: An Introduction","status":"saved"}],"newly_saved":1,"already_saved":1,"steps":["search_catalog: 2 selected of 2 matches","save_book: B001 -> already_saved","save_book: B003 -> saved"]}
+
+ASSISTANT: I searched for books about agents, selected 2, and saved them to your reading list `demo_agent`:
+
+1. **Artificial Intelligence: A Modern Approach** (ID: `B001`) — *already_saved*
+   - Shelf: `QA76.9.A25 R87` *(Note: Shelf labels are illustrative.)*
+2. **Reinforcement Learning: An Introduction** (ID: `B003`) — *saved*
+   - Shelf: `Q325.6 S88` *(Note: Shelf labels are illustrative.)*
+
+=== Predictable failure ===
+Press Enter to issue this request... 
+
+USER: Try to save B999 to demo_agent. Report the server error; do not substitute another book.
+
+[AGENT -> MCP CLIENT -> SERVER] save_book {"list_name": "demo_agent", "book_id": "B999"}
+[11/25/26 21:04:23] Error calling tool 'save_book'                              
+[SERVER -> MCP CLIENT -> AGENT] isError=True
+BOOK_NOT_FOUND: B999 is not in the demo catalog.
+
+ASSISTANT: The save request failed with tool error code `BOOK_NOT_FOUND`: B999 is not in the demo catalog. 
+
+As requested, no substitute book was saved.
+
+[DEMO VERIFIED] All three tools routed correctly; failure surfaced as an error.

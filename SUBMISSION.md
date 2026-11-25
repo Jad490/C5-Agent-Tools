@@ -1,16 +1,17 @@
 # C5 — Agent Tools submission
 
 Course: EECE 503P/798S, Agentic Systems  
-Project: Campus Reading MCP Toolkit
+Project: Campus Reading MCP Toolkit  
+Student: Jad El Harake  
+Student ID: included in the private LMS hand-in PDF.
 
-**Finish before handing in:** add the real URLs below and confirm that the live
-demo, recording length, and grader access have been checked. No repository or
-video URL has been invented for this submission.
+- Code repository: https://github.com/Jad490/C5-Agent-Tools
+- Screencast file: [C5-Agent-Tools-Demo.mp4](C5-Agent-Tools-Demo.mp4)
+- Direct video link: https://raw.githubusercontent.com/Jad490/C5-Agent-Tools/main/C5-Agent-Tools-Demo.mp4
+- Video duration: **6 minutes 40 seconds**
 
-- Student name / ID: **ADD YOUR NAME / ID**
-- Code repository: https://github.com/Jad490/C5-Agent-Tools (private; grant the grader access)
-- Screencast video: **ADD ACCESSIBLE VIDEO URL**
-- Video duration: **ADD ACTUAL DURATION — must be 5–7 minutes**
+The video uses synthetic narration and a terminal session captured in real time
+with actual Gemini model requests and MCP tool executions.
 
 ## Included written deliverables
 
@@ -24,17 +25,19 @@ video URL has been invented for this submission.
 - [OpenAI Agents SDK host/client](campus_mcp/agent.py)
 - [Tests](tests/)
 - [Verification record](docs/verification.md)
+- [Recorded live transcript](evidence/recorded-demo.txt)
+- [Video verification metadata](evidence/video-verification.json)
 - [Assignment requirement mapping](docs/requirements-checklist.md)
 
-## Final checks
+## Deliverable checks
 
-- [ ] Add student name and ID.
-- [ ] Read the summary and reflection and confirm you can explain them.
-- [x] Run the live checked demo with a working Gemini API key.
-- [ ] Record a 5–7 minute screencast of the live agent using all three tools.
-- [ ] Introduce the three categories, show round trips, and discuss challenges.
-- [x] Publish the source code to the repository linked above.
-- [ ] Give the grader access to the private repository.
-- [ ] Upload the video and verify it plays for the grader.
-- [ ] Replace every placeholder above with the actual submission information.
-- [ ] Keep `.env`, API keys, `.venv`, and runtime files out of the submission.
+- [x] Exactly one Data, one Action, and one Orchestration MCP tool.
+- [x] Live agent round trips demonstrated for all three tools and an expected failure.
+- [x] 46 tests and lint checks passed.
+- [x] A 5–7 minute screencast introducing the tools and discussing challenges.
+- [x] Public repository and video links for grader access.
+- [x] Required summary and reflection included.
+- [x] API keys, .env, virtual environment, and runtime data excluded from source uploads.
+
+The student hand-in PDF, source ZIP, video, captions and private submission details
+are packaged locally in the final submission archive.

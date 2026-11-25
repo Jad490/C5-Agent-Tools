@@ -33,6 +33,6 @@ The agent printed:
 
 The originally configured Gemini 3.8 Flash timed out on generation requests.
 Gemini 3.1 Flash-Lite answered a simple diagnostic prompt successfully, then
-completed all four live agent scenarios. It is now the default Gemini model.
-This record contains no API key. The required 5–7 minute screencast remains a
-separate submission deliverable.
+completed all four live agent scenarios. It was the Gemini model used for that run. The November 25 recording uses the
+currently responsive gemini-flash-lite-latest alias; see recorded-demo.txt.
+This record contains no API key. The completed 6:40 screencast is linked in SUBMISSION.md.

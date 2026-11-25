@@ -10,6 +10,7 @@ __pycache__/
 dist/
 build/
 runtime/
+deliverables/
 .DS_Store
 *.mp4
 *.mov

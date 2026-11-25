@@ -1,6 +1,6 @@
 # Verification evidence
 
-Verified locally on November 1, 2026, with Python 3.12.16, FastMCP 4.1.4,
+Verified locally on November 1 and November 25, 2026, with Python 3.12.16, FastMCP 4.1.4,
 and OpenAI Agents SDK 0.24.0.
 
 ## Completed checks
@@ -20,11 +20,13 @@ and OpenAI Agents SDK 0.24.0.
   tool in every scenario and produced final responses from the MCP replies.
   See [the observed results](../evidence/live-demo.md).
 
-## Live run and remaining deliverables
+## Completed recording
 
 The live run used the OpenAI Agents SDK with Gemini as the model provider. The
 initial Gemini 3.8 Flash configuration timed out. Gemini 3.1 Flash-Lite completed
-the full demo successfully and is now the default. The optional OpenAI provider
+the full demo successfully on November 1. On November 25 that pinned model
+returned a 503 high-demand error; gemini-flash-lite-latest passed a preflight and
+all four scenarios in the final recording, and is now the configured default. The optional OpenAI provider
 has configuration tests but has not been verified against the OpenAI API.
 
 For a rehearsal or recording, use a fresh database filename:
@@ -36,6 +38,13 @@ python -m scripts.show_saved --db runtime/live-check-01.sqlite3
 
 Success requires `[DEMO VERIFIED]`, all three tools selected in the correct
 scenarios, `BOOK_NOT_FOUND` for B999, and only B001/B003 saved to `demo_agent`.
-The 5–7 minute recording is still required. Use `--step` for narration, upload the
-video, and add its URL to `SUBMISSION.md`. The code repository is already linked;
-the grader still needs access because it is private.
+The final MP4 is **6:40**, with H.264 video at 1600×900 and AAC narration. The
+terminal session was captured at real wall-clock timings, and the synthetic
+narration is explicitly identified. The agent exited successfully and printed
+[DEMO VERIFIED]. The recorded persistence check found exactly B001 and B003;
+the recorded test and lint runs passed. The video streams decode successfully,
+and its audio is non-silent with a peak level below clipping. See
+[evidence/recorded-demo.txt](../evidence/recorded-demo.txt) and
+[evidence/video-verification.json](../evidence/video-verification.json).
+
+The repository is public. The video and source links are in SUBMISSION.md.

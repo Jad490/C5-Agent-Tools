@@ -30,7 +30,7 @@ async def test_gemini_uses_agents_sdk_model_adapter(monkeypatch):
     model, client = configure_model()
     try:
         assert isinstance(model, OpenAIChatCompletionsModel)
-        assert model.model == "gemini-3.1-flash-lite"
+        assert model.model == "gemini-flash-lite-latest"
         assert str(client.base_url) == "https://generativelanguage.googleapis.com/v1beta/openai/"
     finally:
         await client.close()

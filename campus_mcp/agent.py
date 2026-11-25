@@ -107,7 +107,7 @@ def configure_model() -> tuple[str | OpenAIChatCompletionsModel, AsyncOpenAI | N
             max_retries=1,
         )
         return OpenAIChatCompletionsModel(
-            model=os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite"),
+            model=os.getenv("GEMINI_MODEL", "gemini-flash-lite-latest"),
             openai_client=client,
         ), client
     raise ValueError("MODEL_PROVIDER must be openai or gemini.")

@@ -1,5 +1,7 @@
 # Screencast guide — target 6 minutes 15 seconds
 
+The completed [6:40 screencast](../C5-Agent-Tools-Demo.mp4) uses real agent/MCP calls and synthetic narration. The guide below documents the presentation structure.
+
 The PDF requires a **5–7 minute recording of the real agent using all three tools**.
 Record the working terminal/editor with your narration. This guide is preparation;
 neither this document nor the offline smoke transcript is the video deliverable.
@@ -7,7 +9,7 @@ neither this document nor the offline smoke transcript is the video deliverable.
 ## Before recording
 
 1. Use the configured `.env` with `MODEL_PROVIDER=gemini`, your `GEMINI_API_KEY`,
-   and `GEMINI_MODEL=gemini-3.1-flash-lite`. All four live demo scenarios have
+   and `GEMINI_MODEL=gemini-flash-lite-latest`. All four live demo scenarios have
    passed with this model; see `evidence/live-demo.md`. If you rehearse again, use
    `python -m campus_mcp.agent --demo --db runtime/rehearsal.sqlite3`. Each full
    demo normally makes eight model requests, so save requests for the recording.

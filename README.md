@@ -4,7 +4,11 @@ EECE 503P/798S — C5 Agent Tools assignment. A campus reading assistant built w
 **FastMCP** and the **OpenAI Agents SDK**, exposing **exactly three MCP tools**.
 
 Repository: [Jad490/C5-Agent-Tools](https://github.com/Jad490/C5-Agent-Tools).
-The repository is private; give the grader access before submitting its link.
+The repository is public so the grader can open its source without an invitation.
+
+[Download the 6:40 live screencast](https://raw.githubusercontent.com/Jad490/C5-Agent-Tools/main/C5-Agent-Tools-Demo.mp4)
+([video file page](C5-Agent-Tools-Demo.mp4)). Recorded November 25, 2026, with
+synthetic narration and real agent/MCP calls. See [recording evidence](evidence/recorded-demo.txt).
 
 The catalog is a bundled demonstration dataset with real book titles and
 illustrative shelf labels. It is not connected to a real campus library.
@@ -56,7 +60,7 @@ Default setup, using Gemini with the OpenAI Agents SDK:
 ```dotenv
 MODEL_PROVIDER=gemini
 GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-3.1-flash-lite
+GEMINI_MODEL=gemini-flash-lite-latest
 ```
 
 Use a Gemini API key with model access and available quota. No OpenAI API key is
@@ -113,7 +117,7 @@ OPENAI_MODEL=gpt-4.1-mini
 In Gemini mode, the host uses `OpenAIChatCompletionsModel` and Google's
 [OpenAI-compatible endpoint](https://ai.google.dev/gemini-api/docs/openai/), while
 `Agent`, `Runner`, and `MCPServerStdio` remain from the OpenAI Agents SDK.
-The default Gemini model was verified with real tool calls. The optional OpenAI
+The current Gemini Flash-Lite alias was verified with all four live scenarios on November 25, 2026. The optional OpenAI
 provider has local configuration tests; see [verification evidence](docs/verification.md).
 
 ## Tool contracts
@@ -192,7 +196,7 @@ Only catalog and database paths are passed explicitly to the server, not API key
 | `OPENAI_API_KEY` | Required only for optional OpenAI mode |
 | `OPENAI_MODEL` | `gpt-4.1-mini` |
 | `GEMINI_API_KEY` | Required for default Gemini mode |
-| `GEMINI_MODEL` | `gemini-3.1-flash-lite`, verified live |
+| `GEMINI_MODEL` | `gemini-flash-lite-latest` |
 | `CAMPUS_CATALOG_PATH` | Optional path to a catalog with the bundled JSON schema |
 | `CAMPUS_DB_PATH` | Optional path to a SQLite database |
 | `--db` | Overrides the agent's database path, useful for isolated recordings |
@@ -218,11 +222,10 @@ This is a local single-user teaching project without authentication or deletion.
 | `tests/` | Unit, schema, failure, configuration, and stdio integration tests |
 | `scripts/` | Offline MCP check and read-only database inspection |
 
-To publish, create a GitHub repository under your account, push this project,
-record the live 5–7 minute walkthrough, upload the video, and add both links to
-`SUBMISSION.md`. Verify the grader can open the repository and video. Do not
-submit API keys, `.venv`, or runtime data. Review the writing and be prepared to
-explain each tool and the tests during the recording.
+The public repository and the completed 6:40 video are linked in `SUBMISSION.md`.
+The local final hand-in archive also includes the written deliverables in PDF,
+the source ZIP, the MP4, captions, and private student details. API keys, `.venv`,
+and runtime data are excluded from the source archive.
 
 To create a ZIP containing the source and writing (excluding secrets and runtime
 data), run `python -m scripts.package_submission`. The result is
